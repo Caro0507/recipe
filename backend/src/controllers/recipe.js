@@ -4,7 +4,7 @@ const CodeError = require('../util/CodeError.js')
 const recipeModel = require("../models/recipes.js")
 
 module.exports = {
-    async getUserById(req, res){
+    async getRecipeById(req, res){
         if(!has(req.params, 'id')) 
             throw {code: status.BAD_REQUEST, message: 'You must specify the ID'};
         let { id } = req.params;

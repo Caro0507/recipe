@@ -1,0 +1,154 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "REST API",
+        "description": ""
+    },
+    "host": "/http://localhost:3000",
+    "basePath": "/",
+    "schemes": [
+        "http"
+    ],
+    "paths": {
+        "/api/recipe/{id}": {
+            "get": {
+                "tags": [
+                    "Recipes"
+                ],
+                "summary": "Get recipe by ID",
+                "description": "",
+                "parameters": [{
+                    "name": "id",
+                    "in": "path",
+                    "required": true,
+                    "type": "string"
+                }],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/api/recipes": {
+            "get": {
+                "tags": [
+                    "Recipes"
+                ],
+                "summary": "Get All recipes",
+                "description": "",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Recipes"
+                ],
+                "summary": "New Recipe",
+                "description": "",
+                "parameters": [{
+                    "name": "obj",
+                    "in": "body",
+                    "description": "Title, descriptions, ingredients and instructions",
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "title": {
+                                "type": "string",
+                                "example": "Water"
+                            },
+                            "description,": {
+                                "type": "string",
+                                "example": "Water"
+                            },
+                            "ingredients,": {
+                                "type": "string",
+                                "example": "Water"
+                            },
+                            "instructions,": {
+                                "type": "string",
+                                "example": "Water"
+                            }
+                        },
+                        "required": [
+                            "title",
+                            "description",
+                            "ingredients",
+                            "instructions"
+                        ]
+                    }
+                }],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Recipes"
+                ],
+                "summary": "Delete Recipe",
+                "description": "",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Recipes"
+                ],
+                "summary": "Update Recipe",
+                "description": "",
+                "parameters": [{
+                    "name": "obj",
+                    "in": "body",
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "id": {
+                                "type": "number",
+                                "example": 1
+                            },
+                            "title": {
+                                "type": "string",
+                                "example": "Water"
+                            },
+                            "description,": {
+                                "type": "string",
+                                "example": "Water"
+                            },
+                            "ingredients,": {
+                                "type": "string",
+                                "example": "Water"
+                            },
+                            "instructions,": {
+                                "type": "string",
+                                "example": "Water"
+                            }
+                        },
+                        "required": [
+                            "id",
+                            "description",
+                            "ingredients",
+                            "instructions"
+                        ]
+                    }
+                }],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        }
+    }
+}

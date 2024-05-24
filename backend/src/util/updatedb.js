@@ -1,0 +1,1 @@
+require('../models/recipes.js').sync({ force: true })

@@ -1,6 +1,5 @@
 const{ Sequelize, DataTypes } = require('sequelize')
 const db = require('./database.js')
-
 const recipes = db.define('recipes', {
     id: {
         primaryKey: true,
@@ -8,31 +7,26 @@ const recipes = db.define('recipes', {
         autoIncrement: true
     },
     title: {
-        type: Sequelize.STRING(255),
+        type: Sequelize.TEXT,
         allowNull:false,
         unique: true
     },
     description:{
-        type: DataTypes.STRING,
+        type: Sequelize.TEXT,
         allowNull:false
     },
     ingredients:{
-        type: DataTypes.STRING,
+        type: Sequelize.TEXT,
         allowNull:false
     },
     instructions:{
-        type: DataTypes.STRING,
+        type: Sequelize.TEXT,
         allowNull:false
     },
-    creationDate:{
-        type: DataTypes.DATE,
-        defaultValue: DataTypes.NOW,
+    picture:{
+        type: Sequelize.TEXT,
+        allowNull:false
     },
-    updateDate:{
-        type: DataTypes.DATE,
-        defaultValue: DataTypes.NOW,
-    }
 });
-
 
 module.exports = recipes

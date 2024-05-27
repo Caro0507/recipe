@@ -2,20 +2,21 @@ const status = require('http-status')
 const has = require('has-keys')
 const CodeError = require('../util/CodeError.js')
 const recipeModel = require("../models/recipes.js")
+const recipes = require('../models/recipes.js')
 
 module.exports = {
     async getRecipeById(req, res){
         if(!has(req.params, 'id')) 
             throw {code: status.BAD_REQUEST, message: 'You must specify the ID'};
         let { id } = req.params;
-        let data = await recipeModel.getById(id);
+        let data = await recipeModel.findOne({ where: { id: id } });
         if(!data)
             throw {code: status.BAD_REQUEST, message: 'Recipe not found'};
-        res.json({status: true, message: 'Returning recipe', data});
+        res.json({status: true, message: 'Returning recipe', data, data});
     },
-
-    async getRecipes (res) {
-        const data = await recipeModel.findAll();
+    
+    async getRecipes (req, res) {
+        const data = await recipeModel.findAll({recipes});
         res.json({ status: true, message: 'Returning recipes', data });
     },
 
@@ -26,12 +27,12 @@ module.exports = {
         await recipeModel.create(title, description, ingredients, instructions);
         res.json({status: true, message: 'Recipe Added'});
     },
-    
+
     async updateRecipe (req, res) {
-        if (!has(req.body, ['id', 'title', 'description', 'ingredients', 'instructions'])) 
+        if (!has(req.body, ['title', 'description', 'ingredients', 'instructions'])) 
             throw new CodeError('Something is missing', status.BAD_REQUEST);
-        const { id, title, description, ingredients, instructions } = req.params;
-        await recipeModel.update({ id, title, description, ingredients, instructions });
+        const { title, description, ingredients, instructions } = req.params;
+        await recipeModel.update({ title, description, ingredients, instructions });
         res.json({ status: true, message: 'Recipe updated' })
     },
 
@@ -39,7 +40,8 @@ module.exports = {
         if (!has(req.params, ['id'])) 
             throw new CodeError('You must specify the id', status.BAD_REQUEST);
         const { id } = req.params;
-        await recipeModel.delete(id);
+        const supp = await recipeModel.findOne({ where: { id: id } });
+        supp.destroy()
         res.json({ status: true, message: 'Recipe deleted' })
     },
 

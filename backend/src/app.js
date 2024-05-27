@@ -24,16 +24,16 @@ app.use(helmet())
 // Frontend code access in static mode
 app.use('/frontend', express.static('./src/frontend'))
 
-// // Swagger Documentation
-// const swaggerUi = require('swagger-ui-express')
-// const swaggerFile = require('../swagger_output.json')
-// app.use('/doc', swaggerUi.serve, swaggerUi.setup(swaggerFile))
+// Swagger Documentation
+const swaggerUi = require('swagger-ui-express')
+const swaggerFile = require('../swagger_output.json')
+app.use('/doc', swaggerUi.serve, swaggerUi.setup(swaggerFile))
 
-// // This middleware adds the json header to every response
-// app.use('*', (req, res, next) => {
-//   res.setHeader('Content-Type', 'application/json')
-//   next()
-// })
+// This middleware adds the json header to every response
+app.use('*', (req, res, next) => {
+  res.setHeader('Content-Type', 'application/json')
+  next()
+})
 
 // Assign Routes
 app.use('/', require('./routes/router.js'))

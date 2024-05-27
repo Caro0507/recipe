@@ -1,0 +1,27 @@
+<div class="container">
+    <app-search-recipe></app-search-recipe>
+    <div class="row">
+        <div *ngFor="let recipe of recipeList" class="col m4 s6">
+            <div (click)="goToRecipe(recipe)" class="card horizontal" recipeBorderCard>
+                <div class="card-image">
+                    <img [src]="recipe.picture" />
+                </div>
+                <div class="card-stacked">
+                    <div class="card-content">
+                        <b>{{ recipe.title }}</b>
+                        <p><small></small>{{ recipe.description }}</p>
+                        <p><small>{{"last modified: " }}{{ recipe.modified | date: 'dd/MM/yyyy' }}</small></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<a 
+    class="btn-floating btn-large waves-effect waves-light red z-depth-3"
+    style="position: fixed; bottom: 25px; right: 25px;"
+    routerLink="/recipe/add"
+>
+ ➕
+</a>

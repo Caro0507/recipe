@@ -1,0 +1,52 @@
+<div *ngIf="recipe" class="row">
+    <div class="col s12 m8 offset-m2">
+    <h2 class="header center">{{ recipe.title }}</h2>
+    <div class="card horizontal hoverable">
+      <div class="card-image">
+        <img [src]="recipe.picture">
+      </div>
+      <div class="card-stacked">
+        <div class="card-content">
+          <table class="bordered striped">
+            <tbody>
+              <tr>
+                <td>Title</td>
+                <td><strong>{{ recipe.title }}</strong></td>
+              </tr>
+              <tr>
+                <td>Description</td>
+                <td><strong>{{ recipe.description }}</strong></td>
+              </tr>
+              <tr>
+                <td>Ingredients</td>
+                <td><div>{{ recipe.ingredients }}</div></td>
+              </tr>
+              <tr>
+                <td>Instructions</td>
+                <td><div>{{ recipe.instructions }}</div></td>
+                  <!-- <div *ngFor="let instruction of recipe.instructions" >{{"- "}}{{ instruction }}'</div> -->
+                
+              </tr>
+              <tr>
+                <td>Created at</td>
+                <td><em>{{ recipe.created | date:"dd/MM/yyyy" }}</em></td>
+              </tr>
+              <tr>
+                <td>Modified at</td>
+                <td><em>{{ recipe.modified | date:"dd/MM/yyyy" }}</em></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card-action">
+          <a (click)="goToRecipeList()">Back</a>
+          <a (click)="goToEditRecipe(recipe)">Edit</a>
+          <a (click)="deleteRecipe(recipe)">Delete</a>
+        </div>
+      </div>
+    </div>
+    </div>
+</div>
+<h4 *ngIf='!recipe' class="center">
+  <app-loader></app-loader>
+</h4>

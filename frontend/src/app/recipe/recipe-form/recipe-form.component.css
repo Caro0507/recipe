@@ -1,0 +1,19 @@
+.ng-valid[required] {
+    border-left: 5px solid #42a976;
+}
+
+.ng-invalid:not(form) {
+    border-left: 5px solid #f30404;
+}
+
+#description
+{
+    height:100px;
+}
+
+#ingredients{
+    height:200px;}
+
+#instructions{
+    height:200px;
+}
